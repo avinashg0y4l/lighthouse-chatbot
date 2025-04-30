@@ -1,0 +1,29 @@
+# Python runtime files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env*
+*.env
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+
+# Docker data
+postgres-data/
+
+# Operating system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,14 @@
+# Flask framework for the web server
+Flask
+
+# Twilio library for WhatsApp API interaction
+twilio
+
+# Load environment variables from .env file
+python-dotenv
+
+# PostgreSQL database adapter
+psycopg2-binary
+
+# For making general HTTP requests if needed
+requests

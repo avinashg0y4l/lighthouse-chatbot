@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build: . # Build from Dockerfile in current directory
+    container_name: lighthouse_app
+    ports:
+      - "5000:5000" # Map host port 5000 to container port 5000
+    volumes:
+      - ./src:/app/src # Mount local 'src' folder into container for live code changes
+    env_file:
+      - .env # Load environment variables from .env file
+    depends_on:
+      - db # Make sure 'db' service starts first
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine # Use official Postgres image
+    container_name: lighthouse_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persist database data
+    environment:
+      # Read credentials from the .env file
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    # You can uncomment the ports mapping if you need to connect directly
+    # to the database from your host machine using a tool like DBeaver/pgAdmin
+    # ports:
+    #   - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data: # Define the named volume for data persistence
