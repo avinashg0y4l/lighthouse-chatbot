@@ -5,7 +5,7 @@
 
 Accessible Financial & Employment Tools for Domestic Workers on WhatsApp, powered by AI and integrated with Sampatti Card. Developed as part of the Code for GovTech (C4GT) initiative.
 
-**Project Repository:** [Link to your LightHouse GitHub Repo] <!-- Add link here! -->
+**Project Repository:** [[Link to your LightHouse GitHub Repo]](https://github.com/avinashg0y4l/lighthouse-chatbot/) 
 
 ## Table of Contents
 
@@ -236,8 +236,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ---
 
-Remember to:
-*   Replace placeholders like `[Link to your LightHouse GitHub Repo]`.
-*   Create the `LICENSE` file.
-*   Potentially create a `.env.example` file.
-*   Update sections as the project progresses.
