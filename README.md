@@ -72,7 +72,7 @@ LightHouse is an open-source, AI-powered WhatsApp chatbot designed for domestic 
 
 ## Architecture Overview
 
-![Architecture Flow Diagram](./assets/architecture_flow.png)
+![Architecture Flow Diagram](./figure1.png)
 
 
 *(A more detailed diagram could be added later)*
