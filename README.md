@@ -43,7 +43,7 @@ LightHouse is an open-source, AI-powered WhatsApp chatbot designed for domestic 
 
 *   **User Registration:** Onboard Workers/Employers via WhatsApp, linking to Sampatti Card ID (`register <ID> <role>`).
 *   **Attendance Logging:** Workers can log check-in/checkout times (`checkin`, `checkout`).
-*   **Salary Logging:** Employers can record salary payments (`log salary <WorkerID> <Amt> [Date]`).
+*   **Salary Logging:** Employers can record salary payments (`log salary <Work <Amt> [Date]`).
 *   **Salary Inquiry:** Workers can query their recent salary history (`salary`).
 *   **Basic KYC Upload:** Workers can upload Image/PDF documents via WhatsApp media; files are received and saved (currently locally), DB record created.
 *   **Voice & Text Input:** Core commands processed via Google Dialogflow ES NLP for both modalities.
@@ -101,7 +101,7 @@ LightHouse is an open-source, AI-powered WhatsApp chatbot designed for domestic 
 
 1.  **Clone Repository:**
     ```bash
-    git clone [Link to your LightHouse GitHub Repo] # Replace with your repo link
+    git clone https://github.com/avinashg0y4l/lighthouse-chatbot # Replace with your repo link
     cd lighthouse-chatbot
     ```
 
@@ -212,17 +212,7 @@ Currently, testing is primarily done manually via WhatsApp interactions and by o
 2.  **Milestone 2 (Weeks 7-11):** NLP Integration (Voice & Multilingual) & Refinements (In Progress)
 3.  **Milestone 3 (Weeks 12-14):** Security, Scalability, Admin & Release Prep
 
-## Contributing
 
-Contributions are welcome! Please follow standard open-source practices:
-
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix (`git checkout -b feature/your-feature-name`).
-3.  Make your changes and commit them with clear messages.
-4.  Push your branch to your fork (`git push origin feature/your-feature-name`).
-5.  Create a Pull Request back to the main repository's `main` branch.
-
-Please refer to the `CONTRIBUTING.md` file (to be created) for more detailed guidelines and coding standards. Report bugs or suggest features using the GitHub Issues tab.
 
 ## License
 
@@ -231,8 +221,5 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ## Acknowledgements
 
 *   This project is developed as part of the **Code for GovTech (C4GT)** program.
-*   In collaboration with **Sampatti Card**.
-*   Guidance from assigned Mentors (TBD).
-
 ---
 
