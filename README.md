@@ -74,13 +74,35 @@ LightHouse is an open-source, AI-powered WhatsApp chatbot designed for domestic 
 
 (High Level Flow)
 
-`User (WhatsApp)` <-> `Twilio API` <-> `ngrok` <-> `Flask Backend (Docker)` <-> `Dialogflow ES API`
-                                                         |
-                                                         v
-                                             `PostgreSQL DB (Docker)`
-                                                         |
-                                                         v
-                                             `File Storage (Local/Cloud)`
+sequenceDiagram
+    participant User as User (WhatsApp)
+    participant Twilio as Twilio API
+    participant Ngrok as ngrok Tunnel
+    participant Flask as Flask Backend (Docker)
+    participant Dialogflow as Dialogflow ES API
+    participant Postgres as PostgreSQL DB (Docker)
+    participant Storage as File Storage (Local/Cloud)
+
+    User->>+Twilio: Sends Message (Text/Voice/Media)
+    Twilio->>+Ngrok: Forwards Request (POST /webhook/whatsapp)
+    Ngrok->>+Flask: Relays Request to Local Server
+    Note over Flask: Receives request, gets user info
+    alt Text/Voice Message
+        Flask->>+Dialogflow: Detect Intent (Text/Audio)
+        Dialogflow-->>-Flask: Intent & Parameters
+        Note over Flask: Route based on Intent
+    else Media (e.g., KYC)
+        Note over Flask: Handle Media Upload Directly
+        Flask->>+Storage: Save File
+        Storage-->>-Flask: Save Confirmation
+    end
+    Note over Flask: Perform action (DB query/update, etc.)
+    Flask->>+Postgres: Query/Update Data (Users, Logs)
+    Postgres-->>-Flask: DB Result/Confirmation
+    Note over Flask: Generate TwiML Reply
+    Flask-->>-Ngrok: TwiML Response (HTTP 200 OK)
+    Ngrok-->>-Twilio: Relays TwiML Response
+    Twilio-->>-User: Sends Reply Message to WhatsApp
 
 *(A more detailed diagram could be added later)*
 
