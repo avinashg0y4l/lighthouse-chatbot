@@ -1,3 +1,5 @@
+# Dockerfile (Corrected for Refactored Structure)
+
 # Use an official Python runtime as a parent image
 FROM python:3.10-slim
 
@@ -12,13 +14,16 @@ COPY requirements.txt .
 # --trusted-host pypi.python.org helps in some network environments
 RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
-# Copy the rest of the application code (everything in src folder) into the container
+# Copy the entire src package AND the run.py script
 COPY ./src /app/src
+COPY run.py .
 
 # Make port 5000 available to network outside this container
 EXPOSE 5000
 
-# Command to run when the container starts
-# Uses Flask's built-in server for development
-# For production, you'd typically use Gunicorn or uWSGI
-CMD ["flask", "--app", "src/app:app", "run", "--host=0.0.0.0", "--port=5000"]
+#Dockerfile creates a directory for uploads
+# This is where the uploaded files will be stored
+RUN mkdir -p /app/uploads
+
+# Use the run.py script to start the app via the factory
+CMD ["python", "run.py"]

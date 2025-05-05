@@ -12,3 +12,18 @@ psycopg2-binary
 
 # For making general HTTP requests if needed
 requests
+
+
+# requirements.txt (add these lines or update existing ones)
+Flask
+twilio
+python-dotenv
+psycopg2-binary
+requests
+Flask-SQLAlchemy # Add this for ORM integration with Flask
+SQLAlchemy # Flask-SQLAlchemy might install this, but good to be explicit
+requests # For making HTTP requests if needed
+
+
+# For Dialogflow integration, you might need the following package
+google-cloud-dialogflow

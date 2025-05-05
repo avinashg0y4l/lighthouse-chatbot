@@ -1,29 +1,28 @@
-# Python runtime files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Virtual environment
-venv/
-.venv/
-env/
-ENV/
-env.bak/
-venv.bak/
-
 # Environment variables
 .env*
 *.env
 
-# IDE / Editor files
-.vscode/
-.idea/
-*.swp
+# Dialogflow Key (if in root)
+dialogflow_key.json
+
+# Python runtime files & virtual environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
 
 # Docker data
 postgres-data/
 
-# Operating system files
+# IDE / Editor / OS files
+.vscode/
+.idea/
+*.swp
 .DS_Store
 Thumbs.db
+
+# Optional: Local Uploads (if you don't want to commit test uploads)
+# uploads/

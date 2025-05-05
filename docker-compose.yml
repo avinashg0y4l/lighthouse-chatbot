@@ -1,34 +1,47 @@
-version: '3.8'
+# docker-compose.yml
 
 services:
   app:
-    build: . # Build from Dockerfile in current directory
+    build: .
     container_name: lighthouse_app
     ports:
-      - "5000:5000" # Map host port 5000 to container port 5000
+      - "5000:5000"
     volumes:
-      - ./src:/app/src # Mount local 'src' folder into container for live code changes
+      - ./src:/app/src
+      - ./run.py:/app/run.py
+      - ./uploads:/app/uploads # <<< Make sure this line has correct indentation too (level 3)
+      - ./dialogflow_key.json:/app/dialogflow_key.json # <<< Make sure this line has correct indentation too (level 3)
     env_file:
-      - .env # Load environment variables from .env file
+      - .env
     depends_on:
-      - db # Make sure 'db' service starts first
+      - db
+    environment:
+      - FLASK_APP=src:create_app()
+      - FLASK_CONFIG=${FLASK_CONFIG:-default}
+      - DATABASE_URL=${DATABASE_URL}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS} # Pass credentials path
+      - DIALOGFLOW_PROJECT_ID=${DIALOGFLOW_PROJECT_ID}       # Pass project ID
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_WHATSAPP_NUMBER=${TWILIO_WHATSAPP_NUMBER}
+      - PYTHONUNBUFFERED=1
     restart: unless-stopped
 
   db:
-    image: postgres:15-alpine # Use official Postgres image
+    image: postgres:15-alpine
     container_name: lighthouse_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/ # Persist database data
+    volumes: # This volumes is for the db SERVICE
+      - postgres_data:/var/lib/postgresql/data/ # <<< Correct indentation (level 3)
     environment:
-      # Read credentials from the .env file
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    # You can uncomment the ports mapping if you need to connect directly
-    # to the database from your host machine using a tool like DBeaver/pgAdmin
     # ports:
-    #   - "5432:5432"
+    #   - "5433:5432"
     restart: unless-stopped
 
-volumes:
-  postgres_data: # Define the named volume for data persistence
+# --- This is the TOP-LEVEL volumes block ---
+volumes: # <<< Level 0 indentation
+  postgres_data: # <<< Level 1 indentation (e.g., 2 spaces), nothing after it
+    # If you had options:
+    # driver: local # <<< Level 2 indentation
